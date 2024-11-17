@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 @RestController
 @RequestMapping("/api/reserva")
 @RequiredArgsConstructor
@@ -41,6 +42,7 @@ public class ReservaController {
         log.info("Buscando todas as reservas");
         return reservaService.getAllReservas();
     }
+
 
 
     @GetMapping("/{id}")
@@ -89,3 +91,4 @@ public class ReservaController {
 
 
 }
+
