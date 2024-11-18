@@ -30,7 +30,7 @@ public class PagamentoService {
                 .toList();
     }
 
-    // buscar uma cidade
+    // buscar um Pagamento
     public PagamentoDto getPagamentoById(Long id) {
         Pagamento pag = pagamentoRepository.findById(id).orElseThrow();
         new PagamentoDto();
