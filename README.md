@@ -4,6 +4,7 @@ Projeto desenvolvido para fins acadêmicos na Faculdade de Ampére FAMPER, busca
 ## Contrução
 A aplicação foi desenvolvida utilizando Spring Boot para a implementação da API e PostgreSQL como banco de dados. O códigosegue o padrão padrão MVC (Model-View-Controller) ademais foi utilizado o JPA/Hibernate para a persistência dos dados.
 
+
 # Instalação
 
 Passo a Passo para Instalar e Rodar uma Aplicação Spring Boot
