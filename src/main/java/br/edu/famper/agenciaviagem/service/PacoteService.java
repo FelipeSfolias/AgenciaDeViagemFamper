@@ -7,20 +7,21 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
-@Service
+@Service  // Indica que esta classe é um serviço do Spring, responsável pela lógica de negócio
 @RequiredArgsConstructor
-@Slf4j
+// Cria um construtor com os campos obrigatórios (não usado nesse caso específico, pois usa @Autowired)
+@Slf4j  // Permite a criação de logs para essa classe
 public class PacoteService {
 
     @Autowired
-    private PacoteRepository pacoteRepository;
+    private PacoteRepository pacoteRepository;// Repositório para interagir com a base de dados de Pacote
 
+    // Método para buscar todos os pacotes
     public List<PacoteDto> getAllPacotes(){
         return pacoteRepository
-                .findAll()
+                .findAll()// Busca todos os pacotes na base de dados
                 .stream()
                 .map(pacote -> PacoteDto
                         .builder()
@@ -32,12 +33,12 @@ public class PacoteService {
                         .destinoId(pacote.getId())
                         .build()
                 )
-                .toList();
+                .toList();// Retorna uma lista de PacoteDto
     }
 
-    // buscar uma cidade
+    // Método para buscar um pacote específico pelo ID
     public PacoteDto getPacoteById(Long id){
-        Pacote pac = pacoteRepository.findById(id).orElseThrow();
+        Pacote pac = pacoteRepository.findById(id).orElseThrow();// Busca cliente pelo ID, lança exceção se não encontrar
         new PacoteDto();
         return PacoteDto
                 .builder()
@@ -47,30 +48,30 @@ public class PacoteService {
                 .dataFim(pac.getDataFim())
                 .dataInicio(pac.getDataInicio())
                 .destinoId(pac.getId())
-                .build();
+                .build();// Converte o pacote encontrado para um PacoteDto e o retorna
     }
 
-    // inserir uma cidade
+    // Método para inserir um novo pacote
     public Pacote savePacote(PacoteDto pacoteDto){
-        Pacote pacote= new Pacote();
-        pacote.setNome(pacoteDto.getNome());
+        Pacote pacote = new Pacote();// Cria uma nova entidade Pacote
+        pacote.setNome(pacoteDto.getNome());// Define os atributos do Pacote a partir do pacoteDto
         pacote.setDescricao(pacoteDto.getDescricao());
         pacote.setPreco(pacoteDto.getPreco());
         pacote.setDataFim(pacoteDto.getDataFim());
         pacote.setDataInicio(pacoteDto.getDataInicio());
 
-        return pacoteRepository.save(pacote);
+        return pacoteRepository.save(pacote); // Salva o Pacote na base de dados e retorna a entidade salva
     }
 
-    // editar uma cidade
+    // Método para editar um pacote existente
     public PacoteDto editPacote(Long id, PacoteDto pacoteDto){
-        Pacote pacote = pacoteRepository.findById(id).orElseThrow();
-        pacote.setNome(pacoteDto.getNome());
+        Pacote pacote = pacoteRepository.findById(id).orElseThrow();// Busca o cliente pelo ID, lança exceção se não encontrar
+        pacote.setNome(pacoteDto.getNome());// Atualiza os atributos do pacote
         pacote.setDescricao(pacoteDto.getDescricao());
         pacote.setPreco(pacoteDto.getPreco());
         pacote.setDataFim(pacoteDto.getDataFim());
         pacote.setDataInicio(pacoteDto.getDataInicio());
-        Pacote pacoteEdited = pacoteRepository.save(pacote);
+        Pacote pacoteEdited = pacoteRepository.save(pacote);// Salva as mudanças no repositório
         return new PacoteDto()
                 .builder()
                 .nome(pacoteEdited.getNome())
@@ -78,17 +79,17 @@ public class PacoteService {
                 .preco(pacoteEdited.getPreco())
                 .dataFim(pacoteEdited.getDataFim())
                 .dataInicio(pacoteEdited.getDataInicio())
-                .build();
+                .build();// Converte o Pacote atualizado para PacoteDto e o retorna
     }
 
-    // apagar uma cidade
+    // Método para deletar um Pacot pelo ID
     public boolean deletePacote(Long id){
         try{
-            Pacote pacote = pacoteRepository.findById(id).orElseThrow();
-            pacoteRepository.deleteById(id);
-            return true;
+            Pacote pacote = pacoteRepository.findById(id).orElseThrow();// Verifica se o cliente existe
+            pacoteRepository.deleteById(id);// Remove o cliente pelo ID
+            return true;// Retorna true se a exclusão foi bem-sucedida
         } catch (Exception e){
-            return false;
+            return false; //Retorna false se houver uma exceção, indicando que a exclusão falhou
         }
     }
 

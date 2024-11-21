@@ -10,19 +10,21 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service  // Indica que esta classe é um serviço do Spring, responsável pela lógica de negócio
 @RequiredArgsConstructor
-@Slf4j
+// Cria um construtor com os campos obrigatórios (não usado nesse caso específico, pois usa @Autowired)
+@Slf4j  // Permite a criação de logs para essa classe
 public class ClienteService {
 
     @Autowired
-    private ClienteRepository clienteRepository;
+    private ClienteRepository clienteRepository;  // Repositório para interagir com a base de dados de Cliente
 
+    // Método para buscar todos os clientes
     public List<ClienteDto> getAllClientes(){
         return clienteRepository
-                .findAll()
+                .findAll()  // Busca todos os clientes na base de dados
                 .stream()
-                .map(cliente -> ClienteDto
+                .map(cliente -> ClienteDto  // Mapeia cada Cliente para um ClienteDto
                         .builder()
                         .nome(cliente.getNome())
                         .cpf(cliente.getCpf())
@@ -30,12 +32,12 @@ public class ClienteService {
                         .telefone(cliente.getTelefone())
                         .endereco(cliente.getEndereco())
                         .build())
-                .toList();
+                .toList();  // Retorna uma lista de ClienteDto
     }
 
-    // buscar uma cliente
+    // Método para buscar um cliente específico pelo ID
     public ClienteDto getClienteById(Long id){
-        Cliente cli = clienteRepository.findById(id).orElseThrow();
+        Cliente cli = clienteRepository.findById(id).orElseThrow();  // Busca cliente pelo ID, lança exceção se não encontrar
         return new ClienteDto()
                 .builder()
                 .nome(cli.getNome())
@@ -43,30 +45,29 @@ public class ClienteService {
                 .email(cli.getEmail())
                 .telefone(cli.getTelefone())
                 .endereco(cli.getEndereco())
-                .build();
+                .build();  // Converte o Cliente encontrado para um ClienteDto e o retorna
     }
 
-    // inserir um cliente
-
+    // Método para inserir um novo cliente
     public Cliente saveCliente(ClienteDto clienteDto){
-        Cliente cliente = new Cliente();
-        cliente.setNome(clienteDto.getNome());
+        Cliente cliente = new Cliente();  // Cria uma nova entidade Cliente
+        cliente.setNome(clienteDto.getNome());  // Define os atributos do Cliente a partir do ClienteDto
         cliente.setCpf(clienteDto.getCpf());
         cliente.setEmail(clienteDto.getEmail());
         cliente.setTelefone(clienteDto.getTelefone());
         cliente.setEndereco(clienteDto.getEndereco());
-        return clienteRepository.save(cliente);
+        return clienteRepository.save(cliente);  // Salva o Cliente na base de dados e retorna a entidade salva
     }
 
-    // editar um cliente
+    // Método para editar um cliente existente
     public ClienteDto editCliente(Long id, ClienteDto clienteDto){
-        Cliente cliente = clienteRepository.findById(id).orElseThrow();
-        cliente.setNome(clienteDto.getNome());
+        Cliente cliente = clienteRepository.findById(id).orElseThrow();  // Busca o cliente pelo ID, lança exceção se não encontrar
+        cliente.setNome(clienteDto.getNome());  // Atualiza os atributos do cliente
         cliente.setCpf(clienteDto.getCpf());
         cliente.setEmail(clienteDto.getEmail());
         cliente.setTelefone(clienteDto.getTelefone());
         cliente.setEndereco(clienteDto.getEndereco());
-        Cliente clienteEdited = clienteRepository.save(cliente);
+        Cliente clienteEdited = clienteRepository.save(cliente);  // Salva as mudanças no repositório
         return new ClienteDto()
                 .builder()
                 .nome(clienteEdited.getNome())
@@ -74,17 +75,17 @@ public class ClienteService {
                 .email(clienteEdited.getEmail())
                 .telefone(clienteEdited.getTelefone())
                 .endereco(clienteEdited.getEndereco())
-                .build();
+                .build();  // Converte o Cliente atualizado para ClienteDto e o retorna
     }
 
-    // apagar um cliente
+    // Método para deletar um cliente pelo ID
     public boolean deleteCliente(Long id){
         try{
-            Cliente cliente = clienteRepository.findById(id).orElseThrow();
-            clienteRepository.deleteById(id);
-            return true;
+            Cliente cliente = clienteRepository.findById(id).orElseThrow();  // Verifica se o cliente existe
+            clienteRepository.deleteById(id);  // Remove o cliente pelo ID
+            return true;  // Retorna true se a exclusão foi bem-sucedida
         } catch (Exception e){
-            return false;
+            return false;  // Retorna false se houver uma exceção, indicando que a exclusão falhou
         }
     }
 

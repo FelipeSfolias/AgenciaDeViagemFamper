@@ -3,15 +3,15 @@ package br.edu.famper.agenciaviagem.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
-@Table(name = "destino")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@Entity  // Indica que esta classe é uma entidade JPA, mapeada para uma tabela no banco de dados
+@Table(name = "destino")// Define o nome da tabela no banco de dados como "destino"
+@Getter  // Gera automaticamente os métodos getters para todos os campos
+@Setter  // Gera automaticamente os métodos setters para todos os campos
+@AllArgsConstructor  // Gera um construtor com todos os campos como parâmetros
+@NoArgsConstructor  // Gera um construtor vazio
+@EqualsAndHashCode(of = "id")  // Gera os métodos equals e hashCode, considerando apenas o campo "id"
 public class Destino {
-    @Id
+    @Id// Indica que este campo é a chave primária
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 

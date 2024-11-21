@@ -1,12 +1,13 @@
 package br.edu.famper.agenciaviagem.dto;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+@Getter  // Gera automaticamente os métodos getters para todos os campos
+@Setter  // Gera automaticamente os métodos setters para todos os campos
+@AllArgsConstructor  // Gera um construtor com todos os campos como parâmetros
+@NoArgsConstructor  // Gera um construtor vazio
+@Builder  // Habilita o padrão de projeto Builder para instanciar objetos de ClienteDto
 public class ClienteDto {
 
     @Schema(description = "Nome do Cliente", example = "João da Silva", maxLength = 150)

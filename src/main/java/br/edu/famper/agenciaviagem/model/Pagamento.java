@@ -4,15 +4,15 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.sql.Date;
 
-@Entity
-@Table(name = "pagamento")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@Entity  // Indica que esta classe é uma entidade JPA, mapeada para uma tabela no banco de dados
+@Table(name = "pagamento")// Define o nome da tabela no banco de dados como "pagamento"
+@Getter  // Gera automaticamente os métodos getters para todos os campos
+@Setter  // Gera automaticamente os métodos setters para todos os campos
+@AllArgsConstructor  // Gera um construtor com todos os campos como parâmetros
+@NoArgsConstructor  // Gera um construtor vazio
+@EqualsAndHashCode(of = "id")  // Gera os métodos equals e hashCode, considerando apenas o campo "id"
 public class Pagamento {
-    @Id
+    @Id// Indica que este campo é a chave primária
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 

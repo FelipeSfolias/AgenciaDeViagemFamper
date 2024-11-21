@@ -1,24 +1,20 @@
 package br.edu.famper.agenciaviagem.model;
 
-import br.edu.famper.agenciaviagem.model.Destino;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.sql.Date;
-import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@Table(name = "pacote")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@Entity  // Indica que esta classe é uma entidade JPA, mapeada para uma tabela no banco de dados
+@Table(name = "pacote")// Define o nome da tabela no banco de dados como "pacote"
+@Getter  // Gera automaticamente os métodos getters para todos os campos
+@Setter  // Gera automaticamente os métodos setters para todos os campos
+@AllArgsConstructor  // Gera um construtor com todos os campos como parâmetros
+@NoArgsConstructor  // Gera um construtor vazio
+@EqualsAndHashCode(of = "id")  // Gera os métodos equals e hashCode, considerando apenas o campo "id"
 public class Pacote {
-    @Id
+    @Id// Indica que este campo é a chave primária
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 

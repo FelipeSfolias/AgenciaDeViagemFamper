@@ -28,8 +28,9 @@ public class ReservaController {
 
     private final ReservaService reservaService;
 
+    // Endpoint para obter todas as reserva
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.OK)// Define o status HTTP 200 para este endpoint
     @Operation(summary = "Busca todas as Reservas",
             description = "Busca todas as reservas do Banco de Dados e retorna " +
                     "um array em formato JSON"
@@ -55,11 +56,13 @@ public class ReservaController {
             @ApiResponse(responseCode = "200", description = "FOUND"),
             @ApiResponse(responseCode = "404", description = "NOT FOUND")
     })
+    // Endpoint para obter uma reserva por ID
     public ResponseEntity<ReservaDto> getReservaById(@PathVariable(name = "id") Long id) throws ResourceNotFoundException {
         log.info("Buscando reserva por id: {}", id);
         return ResponseEntity.ok().body(reservaService.getReservaById(id));
     }
 
+    // Endpoint para criar uma nova reserva
     @PostMapping
     @Operation(summary = "Salva Reserva",
             description = "Salva uma reserva no Banco de Dados"
@@ -69,26 +72,28 @@ public class ReservaController {
         return reservaService.saveReserva(reservaDto);
     }
 
+    // Endpoint para atualizar uma reserva
     @PatchMapping("/{id}")
     @Operation(summary = "Atualiza uma Reserva",
             description = "Atualiza uma reserva no Banco de Dados"
     )
+
     public ResponseEntity<ReservaDto> updateReserva(@PathVariable(name = "id") Long id, @RequestBody ReservaDto reservaDto) throws ResourceNotFoundException {
         log.info("Atualizando reserva: {}", reservaDto);
         return ResponseEntity.ok(reservaService.editReserva(id, reservaDto));
     }
 
+
+    // Endpoint para deletar uma reserva
     @DeleteMapping("/{id}")
     @Operation(summary = "Remover Reserva",
             description = "Remove uma reserva no banco de Dados"
     )
     public Map<String, Boolean> deleteReserva(@PathVariable(name = "id") Long id) throws Exception {
-        log.info("Deletando reserva: {}", id);
+        log.info("Reserva cancelada: {}", id);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", reservaService.deleteReserva(id));
         return response;
     }
-
-
 }
 
