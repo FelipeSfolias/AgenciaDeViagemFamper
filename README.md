@@ -137,6 +137,28 @@ http://localhost:8080
 ```
 Caso a aplicação use outra porta, substitua 8080 pela porta correta.
 
+
+## Configuração do Banco de Dados
+
+### Inicie o PostgreSQL e crie o banco de dados:
+```
+CREATE DATABASE api_votos;
+```
+### (Opcional) Crie um usuário específico para o projeto:
+```
+CREATE USER api_votos_user WITH PASSWORD 'sua_senha';
+ALTER DATABASE api_votos OWNER TO api_votos_user;
+```
+### Configure as credenciais no arquivo src/main/resources/application.properties:
+```
+spring.datasource.url=jdbc:postgresql://localhost:5432/api_votos
+spring.datasource.username=api_votos_user
+spring.datasource.password=sua_senha
+```
+
+
+
+
 Parando a Aplicação
 Para parar a execução da aplicação, vá até o terminal onde ela está rodando e pressione Ctrl + C.
 
