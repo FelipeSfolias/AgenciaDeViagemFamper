@@ -2,7 +2,7 @@
 Projeto desenvolvido para fins acadêmicos na Faculdade de Ampére FAMPER, buscando compreender o funcionamendo das APIs e seus componentes como um todo, para tal, cada cursando da matéria de Sistemas Distributivos escolheu um tema para desenvolvimento do projeto, com foco no aprendizado e evolução contínua ao decorrer das aulas.
 
 ## Contrução
-A aplicação foi desenvolvida utilizando Spring Boot para a implementação da API e PostgreSQL como banco de dados. O códigosegue o padrão padrão MVC (Model-View-Controller) ademais foi utilizado o JPA/Hibernate para a persistência dos dados.
+A aplicação foi desenvolvida utilizando Spring Boot para a implementação da API e PostgreSQL como banco de dados. O código segue o  padrão MVC (Model-View-Controller) ademais foi utilizado o JPA/Hibernate para a persistência dos dados.
 
 
 # Instalação
