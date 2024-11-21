@@ -1,4 +1,4 @@
-#  API Agencia de Viagens
+# Agencia de Viagens - API REST com Spring Boot e PostgreSQL
 Projeto desenvolvido para fins acadêmicos na Faculdade de Ampére FAMPER, buscando compreender o funcionamendo das APIs e seus componentes como um todo, para tal, cada cursando da matéria de Sistemas Distributivos escolheu um tema para desenvolvimento do projeto, com foco no aprendizado e evolução contínua ao decorrer das aulas.
 
 ## Contrução
